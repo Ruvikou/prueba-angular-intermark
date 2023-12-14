@@ -1,3 +1,4 @@
+// Model to define User details
 export interface User {
     login: string,
     id: number,

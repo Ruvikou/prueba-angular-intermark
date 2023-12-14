@@ -6,18 +6,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./general-error.component.css']
 })
 export class GeneralErrorComponent implements OnInit {
+  // Recieves error messages from component with errors
   @Input() errors: string[] = [];
   @Output() hasError: EventEmitter<boolean> = new EventEmitter();
-  public errorButton = document.getElementById('errorButton')
 
   constructor() { }
 
   ngOnInit(): void {
-    this.errorButton?.click();
   }
 
   closeModal() {
     this.hasError.emit(false);
   }
-
 }

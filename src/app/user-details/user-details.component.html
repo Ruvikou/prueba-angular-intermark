@@ -1,3 +1,4 @@
+<!-- Card to display user details -->
 <div class="card w-50 m-auto">
     <div class="card-header">
         <img src='{{ user?.avatar_url }}' class="card-img-top" alt='{{ user?.login }}'>
@@ -20,4 +21,5 @@
     </div>
 </div>
 
+<!-- Modal error -->
 <app-general-error *ngIf="hasError" (hasError)="closeError($event)" [errors]="errors"></app-general-error>

@@ -15,24 +15,25 @@ export class UserDetailsComponent implements OnInit {
   public errors: string[] = [];
 
   constructor(private _route: ActivatedRoute, private apiService: ApiService) {
+    // Fetch user details by param in headers
     try {
       this.userName = this._route.snapshot.paramMap.get('name');
 
       this.apiService.getUserData(this.userName || '').subscribe( data => {
-        console.log(data);
         this.user = data;
       })
     } catch (error) {
+      // Executes error component
       this.hasError = true;
       this.errors.push('Error al recuperar usuarios');
       this.errors.push(error+'');
     }
-    // this.user = this.apiService.getUserData(this.userName || '');
   }
 
   ngOnInit(): void {
   }
 
+  // Reset error component
   closeError($event: boolean) {
     this.hasError = $event;
     this.errors = [];

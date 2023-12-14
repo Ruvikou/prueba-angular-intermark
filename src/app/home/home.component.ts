@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   public errors: string[] = [];
   
   constructor(private apiService: ApiService) {
+    // Definition of form parameters for input element
     this.userName = new FormControl('', [Validators.required, Validators.minLength(4)]);
   }
 
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
     if(this.userName && this.userName.valid && this.userName.value != 'pertierra') {
       try {
         this.apiService.getData(this.userName.value).subscribe( data => {
-          this.users = data.items.sort(function(a, b){
+          this.users = data.items.sort(function(a, b){ // Sorts response array for ascending login parameter
             if (a.login.toUpperCase() > b.login.toUpperCase()) {
               return 1;
             }
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
             return 0;
           });
           
+          // Limit the array to 10 items if needed
           if(this.users.length > 10) {
             this.users.length = 10;
           }
@@ -49,6 +51,7 @@ export class HomeComponent implements OnInit {
         this.errors.push(error+'');
       }
     } else {
+      // Executes error component
       this.hasError = true;
       if(this.userName.value == 'pertierra'){
         this.errors.push('El nombre no puede ser pertierra');
@@ -61,6 +64,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Reset error component
   closeError($event: boolean) {
     this.hasError = $event;
     this.errors = [];
