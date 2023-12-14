@@ -1,0 +1,23 @@
+<div class="card w-50 m-auto">
+    <div class="card-header">
+        <img src='{{ user?.avatar_url }}' class="card-img-top" alt='{{ user?.login }}'>
+        <span class="card-title fs-3"> {{ user?.login }} ( {{ user?.id }} )</span>
+    </div>
+    <div class="card-body">
+        <div class="float-start">
+            <p class="card-text">
+                <a href='{{ user?.url }}' class="btn btn-link">URL del usuario</a>
+            </p>
+            <p class="card-text">
+                <a href='{{ user?.repos_url }}' class="btn btn-link">Repositorios del usuario</a>
+            </p>
+        </div>
+
+        <div class="float-end">
+            <p>Seguidores: {{ user?.followers }}</p>
+            <p>Siguiendo: {{ user?.following }}</p>
+        </div>
+    </div>
+</div>
+
+<app-general-error *ngIf="hasError" (hasError)="closeError($event)" [errors]="errors"></app-general-error>

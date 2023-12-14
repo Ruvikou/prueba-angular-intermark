@@ -1,0 +1,33 @@
+<div class="card w-50 m-auto">
+    <div class="card-body">
+        <label for="name" class="form-label">Nombre</label>
+        <div class="input-group">
+            <input type="text" [formControl]="userName" class="form-control" id="name" placeholder="Name to search...">
+            <span class="input-group-text" id="basic-addon2"><fa-icon [icon]="faSearch"></fa-icon></span>
+        </div>
+
+        <button type="button" (click)="search()" class="btn btn-primary mt-2">Search</button>
+    </div>
+</div>
+
+<div *ngIf="users" class="w-75 mx-auto my-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Login</th>
+                <th scope="col">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; index as i" (click)="user.login = 'hola'"
+                [routerLink]="['/usuario', user.login]">
+                <th scope="row">{{ i + 1}}</th>
+                <td>{{ user.login }}</td>
+                <td>{{ user.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-general-error *ngIf="hasError" (hasError)="closeError($event)" [errors]="errors"></app-general-error>
